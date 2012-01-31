@@ -2,6 +2,7 @@
 wget -q -O - http://apt.opscode.com/packages@opscode.com.gpg.key | sudo apt-key add -
 echo "deb http://apt.opscode.com/ `lsb_release -cs`-0.10 main" | sudo tee /etc/apt/sources.list.d/opscode.list
 sudo aptitude update
+sudo aptitude upgrade -y
 echo "chef chef/chef_server_url string https://api.opscode.com/organizations/polyforms" | sudo debconf-set-selections && sudo apt-get install chef -y
 
 echo "{\"run_list\": [ \"role[jenkins]\" ]}" | sudo tee /etc/chef/jenkins.json

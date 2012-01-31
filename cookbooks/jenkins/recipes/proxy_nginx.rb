@@ -19,7 +19,7 @@
 # limitations under the License.
 #
 
-include_recipe "nginx::source"
+include_recipe "nginx"
 
 if node[:jenkins][:http_proxy][:www_redirect] == "enable"
   www_redirect = true
@@ -45,6 +45,10 @@ template "#{node[:nginx][:dir]}/sites-available/jenkins.conf" do
   if File.exists?("#{node[:nginx][:dir]}/sites-enabled/jenkins.conf")
     notifies  :restart, 'service[nginx]'
   end
+end
+
+nginx_site "default" do
+    enable false
 end
 
 nginx_site "jenkins.conf" do
