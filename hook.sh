@@ -8,7 +8,7 @@ echo "chef chef/chef_server_url string https://api.opscode.com/organizations/pol
 sudo wget -O /etc/chef/validation.pem https://raw.github.com/Kuisong/chef/master/certificates/polyforms-validator.pem
 sudo sh -c 'echo validation_client_name \"polyforms-validator\" >> /etc/chef/client.rb'
 
-echo "{\"run_list\": [ \"role[jenkins]\" ]}" | sudo tee /etc/chef/jenkins.json
-sudo sh -c 'echo json_attribs \"/etc/chef/jenkins.json\" >> /etc/chef/client.rb'
+echo "{\"run_list\": [ \"role[jenkins]\" ]}" | sudo tee /etc/chef/run_list.json
+sudo sh -c 'echo json_attribs \"/etc/chef/run_list.json\" >> /etc/chef/client.rb'
 
 sudo service chef-client restart
